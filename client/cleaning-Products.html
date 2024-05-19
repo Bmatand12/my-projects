@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groceries Page</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <header>
+        <div class="nav container">
+            <a  href="groceries.html" class="logo" >Benda's Store</a>
+            <i class='bx bx-shopping-bag'  id="cart-icon"></i>
+            <div class="cart">
+              <h2 class="cart-title">Your Cart</h2>
+              <div class="cart-content"></div>
+              <div class="total">
+                  <div class="total-title">Total</div>
+                  <div id="total-price">0 ₪</div>
+              </div>
+              <button type="button" class="btn-buy">Buy Now</button>
+              <i class='bx bx-x' id="close-cart"></i> 
+          </div>
+      </div>
+    </header>
+    <section class="shop container">
+        <h2 class="section-title">Shop Products</h2>
+        <div class="shop-content">
+            <div class="product-box">
+                <img src="images/Clorox.jfif" alt="" class="product-img">
+                <h2 class="product-title">Clorox</h2>
+                <span class="price">26.90 ₪</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+            <div class="product-box">
+                <img src="images/dish soap.jfif" alt="" class="product-img">
+                <h2 class="product-title">Dish Soap</h2>
+                <span class="price">14.70 ₪</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+            <div class="product-box">
+                <img src="images/Cillit Bang.jfif" alt="" class="product-img">
+                <h2 class="product-title">Cillit Bang</h2>
+                <span class="price">17.90 ₪</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+            <div class="product-box">
+                <img src="images/Sano Jet.jfif" alt="" class="product-img">
+                <h2 class="product-title">Sano Jet </h2>
+                <span class="price">19.70 ₪</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+        </div>
+    </section>
+  
+    <script src="script.js"></script>
+
+    <script>
+        
+
+        let cartIcon = document.querySelector("#cart-icon");
+        let cart = document.querySelector(".cart");
+        let closeCart = document.querySelector("#close-cart");
+        
+        if (cartIcon) {
+            cartIcon.onclick = () => {
+                cart.classList.add("active");
+            };
+        } else {
+            console.error('Cart icon not found');
+        }
+        
+        if (closeCart) {
+            closeCart.onclick = () => {
+                cart.classList.remove("active");
+            };
+        } else {
+            console.error('Close cart button not found');
+        }
+        
+        if (document.readyState == 'loading') {
+            document.addEventListener("DOMContentLoaded", ready);
+        } else {
+            ready();
+        }
+                document.addEventListener('DOMContentLoaded', function() {
+                loadCartItems();
+            });
+            
+            window.addEventListener('unload', function() {
+                saveCartItems();
+            });
+            document.addEventListener('DOMContentLoaded', function() {
+                //displayCartItems(); 
+                displayTotalPrice(); 
+            });
+            </script>
+
+</body>
+</html>

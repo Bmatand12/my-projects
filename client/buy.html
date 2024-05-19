@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groceries Page</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+
+
+    <h1>Order Confirmation</h1>
+    <h6 id="greetingElement"></h6>
+    <br>
+
+    <h2>Cart Items:</h2>
+    <div class="cart-content"></div>
+    <ul id="cart-list"></ul>
+    <br><br><br>
+    <h4>Total Price:</h4>
+    <p id="total-price"></p>
+    <br><br><br>
+
+    <div>
+    <h4>For Payment Press The Button</h4>
+    <button onclick="doBeforePaymentPage()">Payment Page</button>
+    </div>
+
+
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #fff;
+    padding: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 1.5rem;
+    color: #333;
+    text-decoration: none;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#cart-list li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#total-price {
+    font-weight: bold;
+}
+
+    </style>
+
+    <script>
+
+        function doBeforePaymentPage() {
+            console.log(localStorage.getItem("cartItems"), JSON.parse(localStorage.getItem('cartItems')))
+            window.location.pathname = '/paymentPage.html'
+        }
+
+    </script>
+       <script src="script.js"></script>
+       <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        loadCartItems();
+    });
+    
+    </script>
+</body>
+</html>

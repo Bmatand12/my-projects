@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groceries Page</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <header>
+        <div class="nav container">
+            <a  href="groceries.html" class="logo" >Benda's Store</a>
+            <i class='bx bx-shopping-bag'  id="cart-icon"></i>
+            <div class="cart">
+              <h2 class="cart-title">Your Cart</h2>
+              <div class="cart-content"></div> 
+              <div class="total">
+                  <div class="total-title">Total</div>
+                  <div id="total-price">0 ₪</div>
+              </div>
+              <button type="button" class="btn-buy">Buy Now</button>
+              <i class='bx bx-x' id="close-cart"></i> 
+          </div>
+      </div>
+    </header>
+    <section class="shop container">
+        <h2 class="section-title">Shop Products</h2>
+        <div class="shop-content">
+            <div class="product-box">
+                <img src="images/BissliPizza.jfif" alt="" class="product-img">
+                <h2 class="product-title">Bissli Pizza</h2>
+                <span class="price">2.80 ₪</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+            <div class="product-box">
+                <img src="images/DoritosBBQ.jfif" alt="" class="product-img">
+                <h2 class="product-title">Doritos BBQ</h2>
+                <span class="price">4.50₪</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+            <div class="product-box">
+                <img src="images/KinderJoy.jfif" alt="" class="product-img">
+                <h2 class="product-title">Kinder Joy</h2>
+                <span class="price">7.90 ₪</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+            <div class="product-box">
+                <img src="images/Snickers.png" alt="" class="product-img">
+                <h2 class="product-title">Snickers</h2>
+                <span class="price">6.30 ₪</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+           
+        </div>
+    </section>
+  
+    <script src="script.js"></script>
+
+    <script>
+        
+
+        let cartIcon = document.querySelector("#cart-icon");
+        let cart = document.querySelector(".cart");
+        let closeCart = document.querySelector("#close-cart");
+        
+        if (cartIcon) {
+            cartIcon.onclick = () => {
+                cart.classList.add("active");
+            };
+        } else {
+            console.error('Cart icon not found');
+        }
+        
+        if (closeCart) {
+            closeCart.onclick = () => {
+                cart.classList.remove("active");
+            };
+        } else {
+            console.error('Close cart button not found');
+        }
+        
+        if (document.readyState == 'loading') {
+            document.addEventListener("DOMContentLoaded", ready);
+        } else {
+            ready();
+        }
+                document.addEventListener('DOMContentLoaded', function() {
+                loadCartItems();
+            });
+            
+            window.addEventListener('unload', function() {
+                saveCartItems();
+            });
+            document.addEventListener('DOMContentLoaded', function() {
+                //displayCartItems(); 
+                displayTotalPrice(); 
+            });
+            </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groceries Page</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body class="Groceries">
+    <header>
+       
+        <div id="userDisplayName" style="display: none;"></div>
+        <button id="signOutButton" style="display: none;">Sign Out</button>
+       
+       
+
+    <div class="nav container">
+        <a href="#" class="logo">Benda's Store</a>
+        <i class='bx bx-shopping-bag' id="cart-icon"></i>
+        <div class="cart">
+            <h2 class="cart-title">Your Cart</h2>
+            <div class="cart-content"></div>
+            <div class="total">
+                <div class="total-title">Total</div>
+                <div id="total-price">0 ₪</div>
+            </div>
+            <button type="button" class="btn-buy">Buy Now</button>
+            <i class='bx bx-x' id="close-cart"></i>
+        </div>
+    </div>
+    <section class="shop container">
+        <h2 class="section-title">Shop Products</h2>
+        <div class="shop-content" id="list">   
+            <a href="bread-And-Fresh-Pastries.html"><button>Bread And Fresh Pastries</button></a>
+            <a href="milk-And-Eggs.html"><button>Milk And Eggs</button></a>
+            <a href="fruit-And-Vegetables.html"><button>Fruit And Vegetables</button></a>
+            <a href="drinks.html"><button>Drinks</button></a>
+            <a href="snacks-and-Sweets.html"><button>Snacks and Sweets</button></a>
+            <a href="meet-And-Fishs.html"><button>Meet And Fishs</button></a>
+            <a href="cleaning-Products.html"><button>Cleaning Products</button></a>
+        </div>
+    </section>
+    <section>
+        <a href="searchBarPage.html" ><button>Search Products</button></a>
+    </section>
+</header>
+
+<script src="script.js"></script>
+<script>
+    
+
+let cartIcon = document.querySelector("#cart-icon");
+let cart = document.querySelector(".cart");
+let closeCart = document.querySelector("#close-cart");
+
+if (cartIcon) {
+    cartIcon.onclick = () => {
+        cart.classList.add("active");
+    };
+} else {
+    console.error('Cart icon not found');
+}
+
+if (closeCart) {
+    closeCart.onclick = () => {
+        cart.classList.remove("active");
+    };
+} else {
+    console.error('Close cart button not found');
+}
+
+if (document.readyState == 'loading') {
+    document.addEventListener("DOMContentLoaded", ready);
+} else {
+    ready();
+}
+    document.addEventListener('DOMContentLoaded', function() {
+    loadCartItems();
+});
+
+window.addEventListener('unload', function() {
+    saveCartItems();
+});
+document.addEventListener('DOMContentLoaded', function() {
+    displayCartItems(); 
+    displayTotalPrice(); 
+});
+</script>
+</body>
+</html>

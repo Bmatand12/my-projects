@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groceries Page</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    
+
+    <header>
+        <div class="nav container">
+            <a  href="groceries.html" class="logo" >Benda's Store</a>
+            <i class='bx bx-shopping-bag'  id="cart-icon"></i>
+            <div class="cart">
+              <h2 class="cart-title">Your Cart</h2>
+              <div class="cart-content"></div> 
+              <div class="total">
+                  <div class="total-title">Total</div>
+                  <div id="total-price">0 ₪</div>
+              </div>
+              <button type="button" class="btn-buy">Buy Now</button>
+              <i class='bx bx-x' id="close-cart"></i> 
+          </div>
+      </div>
+    </header>
+    <section class="shop container">
+        <h2 class="section-title">Shop Products</h2>
+        <div class="shop-content">
+            <div class="product-box">
+                <img src="images/tomato.jfif" alt="" class="product-img">
+                <h2 class="product-title">1 Kg Tomato</h2>
+                <span class="price">9.80 ₪</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+            <div class="product-box">
+                <img src="images/cucumber.jfif" alt="" class="product-img">
+                <h2 class="product-title">1 Kg Cucumber</h2>
+                <span class="price">6.50₪</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+            <div class="product-box">
+                <img src="images/Red Diaper.jfif" alt="" class="product-img">
+                <h2 class="product-title">1 Kg Red Diaper</h2>
+                <span class="price">12.90 ₪</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+            <div class="product-box">
+                <img src="images/Yellow Diaper.jfif" alt="" class="product-img">
+                <h2 class="product-title">1 Kg Yellow Diaper</h2>
+                <span class="price">14.20 ₪</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+            <div class="product-box">
+                <img src="images/Orange Diaper.jfif" alt="" class="product-img">
+                <h2 class="product-title">1 Kg Orange Diaper</h2>
+                <span class="price">15.60 ₪</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+            <div class="product-box">
+                <img src="images/Red hot pepper.jfif" alt="" class="product-img">
+                <h2 class="product-title">1 Kg Red Hot Pepper</h2>
+                <span class="price">8.60 ₪</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+
+            <div class="product-box">
+                <img src="images/Green hot pepper.jfif" alt="" class="product-img">
+                <h2 class="product-title">1 Kg Green Hot Pepper</h2>
+                <span class="price">7.60 ₪</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+
+            <div class="product-box">
+                <img src="images/green grapes.jfif" alt="" class="product-img">
+                <h2 class="product-title">1 Kg Green Grapes</h2>
+                <span class="price">51.20 ₪</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+
+            <div class="product-box">
+                <img src="images/red grapes.jfif" alt="" class="product-img">
+                <h2 class="product-title">1 Kg Red Grapes</h2>
+                <span class="price">59.30 ₪</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+
+            
+            <div class="product-box">
+                <img src="images/strawberry.jfif" alt="" class="product-img">
+                <h2 class="product-title">1 Kg Strawberry</h2>
+                <span class="price">48.90 ₪</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+
+            <div class="product-box">
+                <img src="images/lettuce.jfif" alt="" class="product-img">
+                <h2 class="product-title">1 Kg Lecttuce</h2>
+                <span class="price">21.90 ₪</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+
+            <div class="product-box">
+                <img src="images/pink lady apple.jfif" alt="" class="product-img">
+                <h2 class="product-title">1 Kg Pink Lady Apple</h2>
+                <span class="price">27.90 ₪</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+        </div>
+    </section>
+  
+    <script src="script.js"></script>
+
+    <script>
+        
+
+        let cartIcon = document.querySelector("#cart-icon");
+        let cart = document.querySelector(".cart");
+        let closeCart = document.querySelector("#close-cart");
+        
+        if (cartIcon) {
+            cartIcon.onclick = () => {
+                cart.classList.add("active");
+            };
+        } else {
+            console.error('Cart icon not found');
+        }
+        
+        if (closeCart) {
+            closeCart.onclick = () => {
+                cart.classList.remove("active");
+            };
+        } else {
+            console.error('Close cart button not found');
+        }
+        
+        if (document.readyState == 'loading') {
+            document.addEventListener("DOMContentLoaded", ready);
+        } else {
+            ready();
+        }
+                document.addEventListener('DOMContentLoaded', function() {
+                loadCartItems();
+            });
+            
+            window.addEventListener('unload', function() {
+                saveCartItems();
+            });
+            document.addEventListener('DOMContentLoaded', function() {
+                //displayCartItems(); 
+                displayTotalPrice(); 
+            });
+            </script>
+
+</body>
+</html>

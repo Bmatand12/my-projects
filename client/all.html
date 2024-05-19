@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>All Orders</title>
+</head>
+<body>
+    <h1>All Orders</h1>
+    <ul id="orders-list"></ul>
+
+    <script>
+        async function getAllOrders() {
+            try {
+                const response = await fetch('/all');
+                if (!response.ok) {
+                    throw new Error('Bad request');
+                }
+                const orders = await response.json();
+                const ordersList = document.getElementById('orders-list');
+                orders.forEach(order => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `Username: ${order.userName}, Total Price: ${order.totalPrice}, Products: ${JSON.stringify(order.products)}`;
+                    ordersList.appendChild(listItem);
+                });
+            } catch (error) {
+                console.error('Error fetching orders:', error);
+
+            }
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const isAdmin = urlParams.get('admin');
+            if (isAdmin !== true) {
+               
+                const errorMessage = document.createElement('p');
+                errorMessage.textContent = 'Access denied. Admin permission required.';
+                document.body.appendChild(errorMessage);
+            }
+
+        }
+    
+        getAllOrders();
+    </script>
+</body>
+</html>
